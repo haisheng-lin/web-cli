@@ -1,0 +1,13 @@
+{
+  "package": "npm",
+  "path": {
+    "output": "dist",
+    "public": "/"
+  },
+  "define": {},
+  "publish": {},
+  "devServer": {
+    "port": 3000,
+    "https": false
+  }
+}
