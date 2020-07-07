@@ -11,6 +11,7 @@ const zoroRootPath = path.resolve(__dirname, '../../');
 const pluginsPath = path.resolve(zoroRootPath, PLUGINS_FOLDER_NAME);
 
 module.exports = {
+  zoroRootPath,
   currentPath,
   pluginsPath,
 };

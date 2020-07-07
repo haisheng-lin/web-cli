@@ -5,10 +5,13 @@ const PLUGIN_DEV_FILENAME = 'dev.js'; // 插件的 dev 文件名
 const PLUGIN_BUILD_FILENAME = 'build.js'; // 插件的 build 文件名
 const PLUGIN_PUBLISH_FILENAME = 'publish.js'; // 插件的 publish 文件名
 
+const CUSTOM_PLUGIN_SOURCE_FILENAME = '.pluginSource.js'; // 指定插件源配置的文件
+
 module.exports = {
   ZORO_JSON_FILENAME,
   PLUGINS_FOLDER_NAME,
   PLUGIN_DEV_FILENAME,
   PLUGIN_BUILD_FILENAME,
   PLUGIN_PUBLISH_FILENAME,
+  CUSTOM_PLUGIN_SOURCE_FILENAME,
 };
