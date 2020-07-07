@@ -4,12 +4,10 @@ const { isString, isPlainObject } = require('../utils/types');
 
 const deepResolveDefine = target => {
   if (isPlainObject(target)) {
-    const result = Object.create(null);
-    Object.keys(target).forEach(key => {
-      result[key] = deepResolveDefine(target[key]);
-    });
-
-    return result;
+    return Object.keys(target).reduce((prev, key) => {
+      prev[key] = deepResolveDefine(target[key]);
+      return prev;
+    }, Object.create(null));
   } else if (isString(target)) {
     return JSON.stringify(target);
   } else {
@@ -32,15 +30,13 @@ const resolveZoroJSON = zoroJSON => {
   const originalDefine = resolvedJSON.define;
 
   if (isPlainObject(originalDefine)) {
-    const webpackDefine = {};
-    Object.keys(originalDefine).forEach(env => {
+    resolvedJSON.define = Object.keys(originalDefine).reduce((prev, env) => {
       const envDefine = deepResolveDefine(originalDefine[env]);
-      webpackDefine[env] = existDefineNamespace
+      prev[env] = existDefineNamespace
         ? { [defineNamespace]: envDefine }
         : envDefine;
-    });
-
-    resolvedJSON.define = webpackDefine;
+      return prev;
+    }, Object.create(null));
   }
 
   return resolvedJSON;

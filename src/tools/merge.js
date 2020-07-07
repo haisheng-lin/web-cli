@@ -1,26 +1,24 @@
 const { isPlainObject, isUndefined } = require('../utils/types');
 
 const merge = (...objs) => {
-  const result = Object.create(null);
-
-  objs.forEach(obj => {
+  return objs.reduce((prev, obj) => {
     if (isPlainObject(obj)) {
       Object.keys(obj).forEach(key => {
         const val = obj[key];
         if (isPlainObject(val)) {
-          if (isPlainObject(result[key])) {
-            result[key] = merge(result[key], val);
+          if (isPlainObject(prev[key])) {
+            prev[key] = merge(prev[key], val);
           } else {
-            result[key] = merge(val);
+            prev[key] = merge(val);
           }
         } else {
-          result[key] = val;
+          prev[key] = val;
         }
       });
     }
-  });
 
-  return result;
+    return prev;
+  }, Object.create(null));
 };
 
 const deepMergeStrategy = (val1, val2) => {
