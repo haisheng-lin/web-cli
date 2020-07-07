@@ -1,0 +1,29 @@
+{
+  "name": "zoro",
+  "version": "1.0.0",
+  "description": "A tool for web development",
+  "main": "src/index.js",
+  "bin": {
+    "zoro": "src/index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/haisheng-lin/zoro.git"
+  },
+  "keywords": [
+    "cli"
+  ],
+  "author": "haisheng-lin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/haisheng-lin/zoro/issues"
+  },
+  "homepage": "https://github.com/haisheng-lin/zoro#readme",
+  "dependencies": {
+    "commander": "^5.1.0",
+    "enquirer": "^2.3.6"
+  }
+}
