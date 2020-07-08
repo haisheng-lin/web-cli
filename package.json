@@ -24,6 +24,7 @@
   "homepage": "https://github.com/haisheng-lin/zoro#readme",
   "dependencies": {
     "commander": "^5.1.0",
+    "download-git-repo": "^3.0.2",
     "enquirer": "^2.3.6"
   }
 }
