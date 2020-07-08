@@ -5,19 +5,15 @@ const { fork } = require('child_process');
 const { ZORO_JSON_FILENAME } = require('../../constants');
 const { currentPath } = require('../../paths');
 const log = require('../../utils/log');
-const { isPlainObject } = require('../../utils/types');
-const {
-  project: { zoroJSON },
-} = require('../../configs');
 const getPluginPath = require('../../tools/getPluginPath');
-const checkZoroJSONFormat = require('../../tools/checkZoroJSONFormat');
+const checkAndResolveZoroJSON = require('../../tools/checkAndResolveZoroJSON');
 const { installPackageSync } = require('../../tools/installPackage');
 
 const dev = async () => {
   try {
-    checkZoroJSONFormat(zoroJSON);
+    const resolvedZoroJSON = checkAndResolveZoroJSON();
 
-    const pluginName = isPlainObject(zoroJSON) ? zoroJSON.plugin : '';
+    const pluginName = resolvedZoroJSON.plugin;
     const pluginPath = getPluginPath(pluginName);
 
     if (!fs.existsSync(pluginPath)) {
@@ -27,7 +23,7 @@ const dev = async () => {
     const existNodeModules = fs.existsSync(
       path.resolve(pluginPath, 'node_modules')
     );
-    const packageType = zoroJSON.package || 'npm';
+    const packageType = resolvedZoroJSON.package;
     if (!existNodeModules) {
       log.info(`[PKG] ${packageType} is installing packages`);
       installPackageSync(packageType, { cwd: pluginPath, stdio: 'inherit' });
