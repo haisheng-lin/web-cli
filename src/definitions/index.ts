@@ -15,3 +15,9 @@ export interface ZoroJSONConfig {
   };
   publish?: { [p: string]: { [p: string]: string | number } };
 }
+
+export interface PluginSourceRepository {
+  pluginSource: string;
+  pluginSourceUrl: string;
+  pluginSourceGroup?: string;
+}
